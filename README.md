@@ -1,5 +1,7 @@
 # Grader
 
+[![Build Status](https://travis-ci.org/samupl/python-parametrized-tests.svg?branch=master)](https://travis-ci.org/samupl/python-parametrized-tests)
+
 ## Requirements
 
 The best way to run grader is to use the virtualenv. Create the virtualenv using the following set of commands:
