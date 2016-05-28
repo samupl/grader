@@ -34,7 +34,27 @@
                 {% endif %}
             </p>
             <hr>
-            <p>{{ exam.description|markdown:"code-friendly, code-color" }}</p>
+            <div
+                id="exam_{{ exam.id }}"
+                {% if request.user.is_authenticated %}
+                class="wysiwyg" data-resource="exam/{{ exam.id }}"
+                {% endif %}
+            >
+                {{ exam.description|safe }}
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="ctrl-buttons" data-resource="exam/{{ exam.id }}">
+                    <button class="btn btn-default btn-sm wysiwyg-save" data-resource="exam/{{ exam.id }}" data-url="{% url 'frontend:exam:api_change_desc' exam.pk %}">
+                        <i class="fa fa-fw fa-check"></i>
+                        <i class="fa fa-fw fa-circle-o-notch fa-spin loading"></i>
+                        {% trans 'Save' %}
+                    </button>
+                    <button class="btn btn-default btn-sm wysiwyg-cancel" data-resource="exam/{{ exam.id }}">
+                        <i class="fa fa-fw fa-times"></i>
+                        {% trans 'Cancel' %}
+                    </button>
+                </div>
+            {% endif%}
         </div>
 
     </div>

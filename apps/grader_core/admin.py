@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.db.models import F, Sum
 from django.utils.translation import ugettext_lazy as _
+from django_summernote.admin import SummernoteModelAdmin
 
 from apps.grader_core.models import Exam, Task, Scenario, Repository
 
@@ -15,7 +16,7 @@ def configure_admin_site(url_admin):
 
 
 # region ModelAdmin class definitions
-class ExamAdmin(admin.ModelAdmin):
+class ExamAdmin(SummernoteModelAdmin):
     list_display = ['name', 'date_start', 'date_end', 'repository']
     search_fields = ['name', 'repository']
 

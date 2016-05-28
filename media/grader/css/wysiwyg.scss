@@ -1,0 +1,36 @@
+@import "variables";
+
+.wysiwyg {
+  &.focus {
+    border: 2px solid $fg-col1;
+    padding: 10px 15px;
+  }
+}
+
+.ctrl-buttons {
+  display: none;
+
+  i.fa.loading {
+    display: none;
+  }
+
+  button.wysiwyg-save:disabled {
+    i.fa {
+      display: none;
+    }
+
+    i.fa.loading {
+      display: inline-block !important;
+    }
+  }
+}
+
+.ctrl-buttons.visible {
+  display: table;
+  background: #fff;
+  position: absolute;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}

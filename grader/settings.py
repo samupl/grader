@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'bootstrap3',
     'django_markdown2',
+    'django_summernote',
     # Local project applications
     'apps.breadcrumbs',
     'apps.grader_core',

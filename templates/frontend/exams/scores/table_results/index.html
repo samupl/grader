@@ -63,8 +63,8 @@
                 </thead>
                 <tbody>
                     {% for result in results %}
-                        <tr>
-                            <td class="user" id="score_{{ result.user }}">{{ result.user }}</td>
+                        <tr id="score_{{ result.user }}">
+                            <td class="user">{{ result.user }}</td>
                             {% for task_result in result.task_results %}
                                 <td class="{% if task_result.points == task_result.max_points %}success text-success{% else %}danger text-danger{% endif %}">
                                     {{ task_result.points }}

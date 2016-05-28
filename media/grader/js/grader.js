@@ -1,3 +1,35 @@
+// Set up CSRF token in each POST request
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+var csrftoken = getCookie('csrftoken');
+
 var getLine = function getLine(change, side) {
     var types = {
         'normal': (side == 'left') ? change.ln2 : change.ln1,
@@ -40,6 +72,7 @@ var getLineDiff = function getLineDiff(change1, change2) {
 jQuery.fn.extend({
     getDiff: function getDiff() {
         var diff = this.data('diff');
+        if (diff === undefined) return;
         diff = JSON.parse('"' + diff.replace('"', '\\"') + '"')
         diff = window.parseDiff(diff);
         return diff;
@@ -170,4 +203,46 @@ $(window).load(function () {
             $icon.removeClass('fa-eye-slash').addClass('fa-eye');
         }
     });
+
+    $('.wysiwyg').each(function (index, obj) {
+        var $obj = $(obj);
+        $obj.summernote({
+            airMode: true,
+            airPopover: [
+                ['style', ['style']],
+                ['color', ['color']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['para', ['ul', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture']]
+            ]
+        })
+    }).focus(function () {
+        var res = $(this).data('resource');
+        $('.ctrl-buttons[data-resource="'+res+'"]').addClass('visible');
+        $('.wysiwyg[data-resource="'+res+'"]').addClass('focus');
+    });
+
+    $('.wysiwyg-save').click(function () {
+        var $button = $(this);
+        var url = $button.data('url');
+        var res = $(this).data('resource');
+        var $target = $('.wysiwyg[data-resource="'+res+'"]');
+        var markup = $target.html();
+        $('.ctrl-buttons[data-resource="'+res+'"]').find('button').attr('disabled', 'disabled');
+        $.post(url, {content: markup}).always(function (data) {
+            $('.ctrl-buttons[data-resource="'+res+'"]')
+                .removeClass('visible')
+                .find('button').removeAttr('disabled');
+            $target.removeClass('focus');
+            $button.removeAttr('disabled');
+        });
+    });
+
+    $('.wysiwyg-cancel').click(function () {
+        var res = $(this).data('resource');
+        $('.ctrl-buttons[data-resource="'+res+'"]').removeClass('visible');
+        $('.wysiwyg[data-resource="'+res+'"]').removeClass('focus');
+    })
+
 });
