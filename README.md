@@ -1,6 +1,6 @@
 # Grader
 
-[![Build Status](https://travis-ci.org/samupl/python-parametrized-tests.svg?branch=master)](https://travis-ci.org/samupl/python-parametrized-tests)
+[![Build Status](https://travis-ci.org/samupl/grader.svg?branch=master)](https://travis-ci.org/samupl/grader)
 
 ## Requirements
 
