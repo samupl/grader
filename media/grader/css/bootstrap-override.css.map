@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,IAAK;EACD,UAAU,EAAE,OAAO;;ACDvB,MAAO;EACH,UAAU,EAAE,IAAI;EAChB,MAAM,EAAE,CAAC;EAET,qBAAe;IACX,gBAAgB,EAAE,OAAO;IACzB,aAAa,EAAE,iBAAkB;IACjC,KAAK,EDTH,OAAO;ICUT,cAAc,EAAE,SAAS;IACzB,YAAY,EAAE,IAAI;IAClB,WAAW,EAAE,IAAI;IACjB,YAAY,EAAE,CAAC;IACf,aAAa,EAAE,CAAC",
+"sources": ["colors.scss","bootstrap-override.scss"],
+"names": [],
+"file": "bootstrap-override.css"
+}

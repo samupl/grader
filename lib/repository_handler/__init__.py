@@ -1,0 +1,2 @@
+class AbstractRepositoryHandler:
+    pass

@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.4"
+install:
+  - pip install -r requirements.txt
+script:
+  - python manage.py test
+before_script:
+  - "pep8 --exclude=migrations --ignore=E501,E225 apps lib"
+  - pyflakes apps lib

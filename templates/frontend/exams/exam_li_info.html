@@ -1,0 +1,5 @@
+{{ exam.date_start|date:'Y-m-d H:i' }} -
+{% if exam.date_start.day != exam.date_end.day or exam.date_start.month != exam.date_end.month %}
+    {{ exam.date_end|date:'Y-m-d ' }}
+{% endif %}
+{{ exam.date_end|date:'H:i' }}

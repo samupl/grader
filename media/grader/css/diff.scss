@@ -1,0 +1,51 @@
+.diff-block {
+  table {
+    font-family: Monaco, Monospaced, "DejaVu Sans Mono", "Courier New", monospace;
+    font-size: 12px;
+    thead {
+      td {
+        border-bottom-width: 1px;
+        background: #f7f7f7;
+        color: #888;
+      }
+    }
+
+    td.content {
+      border: 0 !important;
+      width: 43%;
+      background: #FCFCFC;
+      padding-left: 10px;
+    }
+
+    td.lineno {
+      width: 50px;
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+      text-align: right;
+      color: #666;
+      padding-right: 10px;
+      background: #f7f7f7;
+      border-right: 0;
+    }
+
+    td.text-danger {
+      background: #FFECEC;
+    }
+
+    td.text-success {
+      background: #EAFFEA;
+    }
+
+    td.lineno.text-success {
+      color: #3c763d;
+      border-color: #d6e9c6;
+      background: #DBFFDB;
+    }
+
+    td.lineno.text-danger {
+      color: #a94442;
+      border-color: #ebccd1;
+      background: #FFDDDD;
+    }
+  }
+}

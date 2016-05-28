@@ -1,0 +1,5 @@
+<li {% if current %}class="active"{% endif %}>
+    {% if not current %}<a href="{{ url }}">{% endif %}
+        {{ label }}
+    {% if not current %}</a>{% endif %}
+</li>

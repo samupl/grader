@@ -1,0 +1,17 @@
+@import "variables";
+
+.footer {
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: $bg-col2;
+    border-top: 1px solid $brd-col1;
+    padding-top: 15px;
+}
+
+body {
+    padding-bottom: 60px;
+}

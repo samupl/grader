@@ -1,0 +1,19 @@
+{% load i18n %}
+
+
+{% url 'frontend:exam:info' exam.pk as url_exam_info %}
+
+
+<ul class="nav nav-pills nav-justified">
+    <li role="presentation" class="{% if request.path == url_exam_info %}active{% endif %}">
+        <a href="{% url 'frontend:exam:info' exam.pk %}">
+            <i class="fa fa-fw fa-info-circle fa-2x"></i><br>
+            {% trans 'Exam info' %}</a>
+    </li>
+    <li role="presentation" class="{% if request.path != url_exam_info %}active{% endif %}">
+        <a href="{% url 'frontend:exam:scores' exam.pk %}">
+            <i class="fa fa-fw fa-star-half-o fa-2x"></i><br>
+            {% trans 'Scores' %}
+        </a>
+    </li>
+</ul>

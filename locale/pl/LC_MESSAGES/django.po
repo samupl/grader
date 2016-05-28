@@ -1,0 +1,278 @@
+# Grader - PL language pack.
+# This file is distributed under the same license as the grader project.
+# Jakub Szafrański <259064@fizyka.umk.pl>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-19 15:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: apps/grader_checker/models.py:8
+msgid "Check date"
+msgstr "Data sprawdzenia"
+
+#: apps/grader_checker/models.py:9
+msgid "Scored points"
+msgstr "Zdobyte punkty"
+
+#: apps/grader_checker/models.py:10
+msgid "User"
+msgstr "Użytkownik"
+
+#: apps/grader_core/admin.py:10
+msgid "Grader administration"
+msgstr "Administracja Grader"
+
+#: apps/grader_core/models.py:21
+msgid "Repository id"
+msgstr "Identyfikator repozytorium"
+
+#: apps/grader_core/models.py:22 apps/grader_core/models.py:110
+msgid "Type"
+msgstr "Typ"
+
+#: apps/grader_core/models.py:23
+msgid "URL"
+msgstr "URL"
+
+#: apps/grader_core/models.py:33
+msgid "Repository"
+msgstr "Repozytorium"
+
+#: apps/grader_core/models.py:34
+msgid "Repositories"
+msgstr "Repozytoria"
+
+#: apps/grader_core/models.py:38
+msgid "Exam short name"
+msgstr "Krótka nazwa egzaminu"
+
+#: apps/grader_core/models.py:39 apps/grader_core/models.py:78
+msgid "Description"
+msgstr "Opis"
+
+#: apps/grader_core/models.py:40
+msgid "Starting date & time"
+msgstr "Czas i data rozpoczęcia"
+
+#: apps/grader_core/models.py:41
+msgid "End date & time"
+msgstr "Czas i data zakończenia"
+
+#: apps/grader_core/models.py:65
+msgid "In progress"
+msgstr "W trakcie"
+
+#: apps/grader_core/models.py:65
+msgid "Closed"
+msgstr "Zamknięty"
+
+#: apps/grader_core/models.py:71
+msgid "Exam"
+msgstr "Egzamin"
+
+#: apps/grader_core/models.py:72
+msgid "Exams"
+msgstr "Egzaminy"
+
+#: apps/grader_core/models.py:77
+msgid "Title"
+msgstr "Tytuł"
+
+#: apps/grader_core/models.py:79
+msgid "Source path"
+msgstr "Ścieżka źródłowa"
+
+#: apps/grader_core/models.py:93
+msgid "Task"
+msgstr "Zadanie"
+
+#: apps/grader_core/models.py:94
+msgid "Tasks"
+msgstr "Zadania"
+
+#: apps/grader_core/models.py:109
+msgid "Arguments"
+msgstr "Argumenty"
+
+#: apps/grader_core/models.py:113
+msgid "Expected standard output"
+msgstr "Oczekiwane standardowe wyjście"
+
+#: apps/grader_core/models.py:114
+msgid "Expected standard error output"
+msgstr "Oczekiwane standardowe wyjście błędów"
+
+#: apps/grader_core/models.py:115
+msgid "Points for this scenario"
+msgstr "Punkty za ten scenariusz"
+
+#: apps/grader_core/models.py:125
+msgid "Scenario"
+msgstr "Scenariusz"
+
+#: apps/grader_core/models.py:126
+msgid "Scenarios"
+msgstr "Scenariusze"
+
+#: apps/grader_environments/models.py:9 apps/grader_environments/models.py:31
+msgid "Name"
+msgstr "Nazwa"
+
+#: apps/grader_environments/models.py:14
+msgid "no environments"
+msgstr "brak środowisk"
+
+#: apps/grader_environments/models.py:16
+msgid "1 runtime environment"
+msgstr "1 środowisko uruchomieniowe"
+
+#: apps/grader_environments/models.py:20
+msgid "runtime environments"
+msgstr "środowiska uruchomieniowe"
+
+#: apps/grader_environments/models.py:32
+msgid "Host"
+msgstr "Host"
+
+#: apps/grader_environments/models.py:33 templates/frontend/base/base.html:85
+#: templates/frontend/base/base.html:86
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+#: apps/grader_environments/models.py:34 templates/frontend/base/base.html:89
+#: templates/frontend/base/base.html:90
+msgid "Password"
+msgstr "Hasło"
+
+#: apps/grader_environments/models.py:35
+msgid "Port"
+msgstr "Port"
+
+#: apps/grader_environments/models.py:43
+msgid "with password"
+msgstr "z hasłem"
+
+#: apps/grader_environments/models.py:43
+msgid "no password set"
+msgstr "brak hasła"
+
+#: templates/frontend/auth/sign_in.html:8
+#: templates/frontend/auth/sign_in.html:14
+#: templates/frontend/auth/sign_in.html:24
+msgid "Sign in"
+msgstr "Zaloguj się"
+
+#: templates/frontend/auth/sign_out.html:7
+#: templates/frontend/base/base.html:100
+msgid "Sign out"
+msgstr "Wyloguj się"
+
+#: templates/frontend/auth/sign_out.html:14
+msgid "You have been succesfully signed out."
+msgstr "Zostałeś wylogowany prawidłowo."
+
+#: templates/frontend/auth/sign_out.html:15
+msgid "Back to home page"
+msgstr "Powrót do strony głównej"
+
+#: templates/frontend/base/base.html:31
+msgid "Grader"
+msgstr "Grader"
+
+#: templates/frontend/base/base.html:51
+msgid "Change language"
+msgstr "Zmień język"
+
+#: templates/frontend/base/base.html:74
+msgid "Not logged-in"
+msgstr "Niezalogowany"
+
+#: templates/frontend/base/base.html:76
+msgid "Logged in as"
+msgstr "Zalogowany jako"
+
+#: templates/frontend/base/base.html:114
+msgid "Created by"
+msgstr "Utworzony przez"
+
+#: templates/frontend/base/base.html:114
+msgid "maintained by"
+msgstr "zarządzany przez"
+
+#: templates/frontend/base/base.html:116
+msgid "Code licensed under"
+msgstr "Licencja"
+
+#: templates/frontend/base/base.html:116
+msgid "MIT License"
+msgstr "MIT"
+
+#: templates/frontend/exams/exam.html:8
+msgid "Browse exam"
+msgstr "Przeglądaj egzamin"
+
+#: templates/frontend/exams/exam.html:27
+msgid ""
+"This exam is currently closed. If you have commited any answers after its "
+"closing time, they will not be considered in your final scoring."
+msgstr "Ten egzamin jest obecnie zamknięty. Jeśli wysłałeś swoje rozwiązania po czasie zakończenia egzaminu, nie będą one wzięte pod uwagę."
+
+#: templates/frontend/exams/exam.html:50
+msgid "points"
+msgstr "pkt"
+
+#: templates/frontend/exams/exam_navbar.html:11
+msgid "Exam info"
+msgstr "Informacje o egzaminie"
+
+#: templates/frontend/exams/exam_navbar.html:16
+#| msgid "Scored points"
+msgid "Scores"
+msgstr "Wyniki"
+
+#: templates/frontend/index.html:16
+msgid "Exams currently in progress"
+msgstr "Egzaminy w trakcie"
+
+#: templates/frontend/index.html:22
+msgid "There are currently no exams in progress."
+msgstr "W tej chwili nie ma żadnych egzaminów"
+
+#: templates/frontend/index.html:45
+msgid "Archival exams"
+msgstr "Archiwalne egzaminy"
+
+#: templates/frontend/index.html:51
+msgid "There are currently no exams in the archive."
+msgstr "Archiwum egzaminów jest obecnie puste."
+
+#: templates/frontend/index.html:72
+msgid "Statistics"
+msgstr "Statystyki"
+
+#: templates/frontend/index.html:82
+msgid "Number of exams"
+msgstr "Ilość egzaminów"
+
+#: templates/frontend/index.html:86
+msgid "Software tests run"
+msgstr "Przeprowadzonych testów"
+
+#: templates/frontend/index.html:90
+msgid "Tasks defined"
+msgstr "Zdefiniowanych zadań"
+
+#: templates/frontend/index.html:94
+msgid "Scenarios defined"
+msgstr "Liczba scenariuszy sprawdzających"

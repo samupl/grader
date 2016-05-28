@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<!-- Ignore the empty lines, they are present due to the template language syntax and its import statements -->
+{# Load template processing modules #}
+{% load static %}
+{% load i18n %}
+{% load breadcrumbs %}
+
+{# Get language info for language picker form #}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as lang_info %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'grader/css/grader.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'flag-icon-css/css/flag-icon.css' %}">
+
+    <script type="text/javascript" src="{% static 'jquery/jquery-2.2.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% url 'frontend:javascript' %}"></script>
+    <script type="text/javascript" src="{% static 'parse-diff/parse-diff.js' %}"></script>
+    <script type="text/javascript" src="{% static 'grader/js/grader.js' %}"></script>
+    <title>Grader &raquo; {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="row row-title">
+        {# Title #}
+        <div class="col-md-6">
+            <h1>
+                <a href="{% url 'frontend:home' %}">{% trans 'Grader' %}</a>
+                <small>software grading system</small>
+            </h1>
+        </div>
+
+        <div class="col-md-6">
+
+            {# Language picker form #}
+            <form id="lang-form" action="{% url 'i18n:set_language' %}" method="post">
+                {% csrf_token %}
+                <input name="language" value="" type="hidden">
+            </form>
+
+            <div class="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    {# Language picker dropdown #}
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" type="button"
+                           id="dropdown-language-picker" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="true">
+                            <i class="fa fa-fw fa-language"></i> {% trans 'Change language' %} ({{ lang_info.name_local|capfirst }})
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown-language-picker">
+                            {% get_available_languages as LANGUAGES %}
+                            {% for lang in LANGUAGES %}
+                                {% get_language_info for lang.0 as lang_loop_info %}
+                                <li>
+                                    <a href="javascript:void(0);" class="set-language" data-lang="{{ lang.0 }}">
+                                        <span class="flag-icon flag-icon-{% if lang.0 == 'en' %}gb{% else %}{{ lang.0 }}{% endif %}"></span>
+                                        &nbsp; {{ lang_loop_info.name_local|capfirst }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    {# User info dropdown #}
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" type="button" id="dropdown-user"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-fw fa-user"></i>
+                            {% if not request.user.is_authenticated %}
+                                {% trans 'Not logged-in' %}
+                            {% else %}
+                                {% trans 'Logged in as' %}: {{ request.user.username }}
+                            {% endif %}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown-user">
+                            {% if not request.user.is_authenticated %}
+                                <form class="auth-box" action="{% url 'auth:sign-in' %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="sr-only" for="id_username">{% trans 'Username' %}</label>
+                                        <input class="form-control" id="id_username" maxlength="254" name="username" placeholder="{% trans 'Username' %}" required="required" title="" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="id_password">{% trans 'Password' %}</label>
+                                        <input class="form-control" id="id_password" name="password" placeholder="{% trans 'Password' %}" required="required" title="" type="password">
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn btn-primary">
+                                            <i class="fa fa-fw fa-sign-in"></i>
+                                            Sign in
+                                        </button>
+                                    </div>
+                                </form>
+                            {% else %}
+                                <li><a href="{% url 'auth:sign-out' %}">{% trans 'Sign out' %}</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+        {% trans 'Home page' as i18n_home %}
+
+        <ol class="breadcrumb">
+            {% breadcrumb request 'frontend:home' i18n_home %}
+            {% block breadcrumbs %}
+            {% endblock %}
+        </ol>
+    <hr>
+    {% block content %}{% endblock %}
+</div>
+
+<footer class="footer">
+    <div class="container text-center">
+        {% trans 'Created by' %} <a href="https://samu.pl">Jakub Szafrański</a>, {% trans 'maintained by' %} <a
+            href="https://fizyka.umk.pl/~jkob/">Jacek Kobus</a>.<br>
+        {% trans 'Code licensed under' %} <a href="https://opensource.org/licenses/MIT">{% trans 'MIT License' %}</a>.
+    </div>
+</footer>
+</body>
+
+<script type="text/javascript">
+    var $langForm = $("#lang-form");
+    $(".set-language").click(function () {
+        var lang = $(this).data('lang');
+        $langForm.find('input[name="language"]').val(lang)
+        $langForm.submit();
+    });
+</script>
+</html>

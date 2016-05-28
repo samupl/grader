@@ -1,0 +1,18 @@
+{% load i18n %}
+
+<div class="list-group list-group-menu {% if not disable_affix %}scores-affix{% endif %}">
+    {% url 'frontend:exam:scores_by_user' exam.id as url_by_user %}
+    <a href="{{ url_by_user }}" class="list-group-item {% if url_by_user in request.path %} active {% endif %}">
+        <i class="fa fa-fw fa-user"></i> {% trans 'Single user results' %}
+    </a>
+
+    {% url 'frontend:exam:scores_list' exam.id as url_all_users %}
+    <a href="{{ url_all_users }}" class="list-group-item">
+        <i class="fa fa-fw fa-users"></i> {% trans 'All users results (list)' %}
+    </a>
+
+    {% url 'frontend:exam:scores_table' exam.id as url_table %}
+    <a href="{{ url_table }}" class="list-group-item">
+        <i class="fa fa-fw fa-table"></i> {% trans 'All users results (table)' %}
+    </a>
+</div>

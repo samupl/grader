@@ -1,0 +1,24 @@
+@import "variables";
+
+.affix {
+  top: 15px;
+
+  @media (min-width: $screen-md-min) {
+    width: 293px;
+  }
+
+  @media (min-width: $screen-lg-min) {
+    width: 360px;
+  }
+
+
+}
+
+.affix-top {
+
+}
+
+.affix-bottom {
+
+}
+

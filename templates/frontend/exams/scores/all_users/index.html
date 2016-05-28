@@ -1,0 +1,60 @@
+{% extends 'frontend/base/base.html' %}
+
+
+{% load i18n %}
+{% load breadcrumbs %}
+
+
+{% block title %}{% trans 'Scores' %} &raquo; {{ exam.name }}{% endblock %}
+
+
+{% block breadcrumbs %}
+    {% trans 'Scores' as i18n_scores %}
+    {% trans 'All users results' as i18n_scores_all %}
+
+    {% url 'frontend:exam:info' exam.pk as url_exam_info %}
+    {% url 'frontend:exam:scores' exam.pk as url_exam_scores %}
+    {% url 'frontend:exam:scores_list' exam.pk as url_exam_scores_all_index %}
+
+    {% breadcrumb request url_exam_info exam.name %}
+    {% breadcrumb request url_exam_scores i18n_scores %}
+    {% breadcrumb request url_exam_scores_all_index i18n_scores_all %}
+{% endblock %}
+
+
+{% block content %}
+    {% include 'frontend/exams/exam_navbar.html' with exam=exam %}
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            {% include 'frontend/exams/scores/menu.html' with exam=exam %}
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default score">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-fw fa-star-half-o"></i> {{ exam.name }} <small class="pull-right">{% trans 'Scores (all users, list)' %}</small></h2>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        {% for result in results %}
+                            <li><a href="#scores_{{ result.user }}">{{ result.user }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            {% for result in results %}
+                <div class="panel panel-default" id="scores_{{ result.user }}">
+                    <div class="panel-heading">
+                        <h3><i class="fa fa-fw fa-user"></i> {{ result.user }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% include 'frontend/exams/results/result.html' with task_results=result.task_results %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

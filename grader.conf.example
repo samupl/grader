@@ -1,0 +1,9 @@
+[database]
+engine =        django.db.backends.sqlite3
+name =          db.sqlite3
+user =          -
+password =      -
+host =          -
+
+[debug]
+debug =         true

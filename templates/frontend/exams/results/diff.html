@@ -1,0 +1,10 @@
+{% if diff_stdout %}
+    <div class="diff" data-diff="{{ diff_stdout|escapejs }}" data-std="stdout">
+    </div>
+{#    <script type="text/javascript">console.log(window.parseDiff('{{ diff_stdout|escapejs }}'));</script>#}
+{% endif %}
+
+{% if diff_stderr %}
+    <div class="diff" data-diff="{{ diff_stderr|escapejs }}" data-std="stderr">
+    </div>
+{% endif %}

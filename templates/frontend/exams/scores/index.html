@@ -1,0 +1,42 @@
+{% extends 'frontend/base/base.html' %}
+
+
+{% load i18n %}
+{% load breadcrumbs %}
+
+
+{% block title %}{% trans 'Scores' %} &raquo; {{ exam.name }}{% endblock %}
+
+
+{% block breadcrumbs %}
+    {% trans 'Scores' as i18n_scores %}
+    {% url 'frontend:exam:info' exam.pk as url_exam_info %}
+
+    {% breadcrumb request url_exam_info exam.name %}
+    {% breadcrumb request request.path i18n_scores %}
+{% endblock %}
+
+
+{% block content %}
+    {% include 'frontend/exams/exam_navbar.html' with exam=exam %}
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            {% include 'frontend/exams/scores/menu.html' with exam=exam %}
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-fw fa-star-half-o"></i> {{ exam.name }} <small class="pull-right">{% trans 'Scores' %}</small></h2>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle"></i> {% trans 'To proceed select a display method from the left' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

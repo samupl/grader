@@ -1,0 +1,48 @@
+{% extends 'frontend/base/base.html' %}
+
+
+{% load i18n %}
+{% load breadcrumbs %}
+
+
+{% block title %}{% trans 'Scores' %} &raquo; {{ exam.name }}{% endblock %}
+
+
+{% block breadcrumbs %}
+    {% trans 'Scores' as i18n_scores %}
+    {% trans 'Scores (single user)' as i18n_scores_single %}
+
+    {% url 'frontend:exam:info' exam.pk as url_exam_info %}
+    {% url 'frontend:exam:scores' exam.pk as url_exam_scores %}
+    {% url 'frontend:exam:scores_by_user' exam.pk as url_exam_scores_single_index %}
+    {% url 'frontend:exam:scores_by_user' exam.pk username as url_exam_scores_single_user %}
+
+    {% breadcrumb request url_exam_info exam.name %}
+    {% breadcrumb request url_exam_scores i18n_scores %}
+    {% breadcrumb request url_exam_scores_single_index i18n_scores_single %}
+    {% breadcrumb request url_exam_scores_single_user username %}
+{% endblock %}
+
+
+{% block content %}
+    {% include 'frontend/exams/exam_navbar.html' with exam=exam %}
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            {% include 'frontend/exams/scores/menu.html' with exam=exam %}
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default score">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-fw fa-star-half-o"></i> {{ exam.name }} <small class="pull-right">{% trans 'Scores (single user)' %}</small></h2>
+                    <h3><i class="fa fa-fw fa-user"></i> {{ username }}</h3>
+                </div>
+                <div class="panel-body">
+                    {% include 'frontend/exams/results/result.html' with task_results=task_results %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

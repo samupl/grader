@@ -1,0 +1,47 @@
+{% load i18n %}
+
+{% for task_result in task_results %}
+    <h4>{{ task_result.task.title }} ({{ task_result.points }}
+        / {{ task_result.max_points }})</h4>
+    {% if not task_result.results %}
+        <div class="alert alert-warning">
+            <i class="fa fa-fw fa-warning"></i> {% trans 'No solutions submitted for this task!' %}
+        </div>
+    {% endif %}
+    {% if task_result.passed %}
+        {% for result in task_result.results %}
+            <p>
+                <i class="fa fa-fw fa-check text-success"></i>
+                <code>
+                    ./{{ task_result.task.path }} {{ result.scenario.arguments }}
+                </code>
+            </p>
+        {% endfor %}
+    {% else %}
+        {% for result in task_result.results %}
+            <p>
+                {% if result.passed %}
+                    <i class="fa fa-fw fa-check text-success"></i>
+                {% else %}
+                    <i class="fa fa-fw fa-exclamation-triangle text-danger"></i>
+                {% endif %}
+                <code>
+                    ./{{ task_result.task.path }} {{ result.scenario.arguments }}
+                </code>
+                {% if not result.passed %}
+                    <a href="javascript:void(0);" class="showResult pull-right"
+                       data-result-id="{{ result.id }}"><i
+                            class="fa fa-eye"></i>
+                        <span>{% trans 'Toggle result' %}</span></a>
+                {% endif %}
+            </p>
+            <div class="results" id="result-{{ result.id }}"
+                 style="display: none;">
+                {% if result.scenario.scenario_type == 'diff' %}
+                    {% include 'frontend/exams/results/diff.html' with diff_stdout=result.diff_stdout diff_stderr=result.diff_stderr %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <hr>
+{% endfor %}

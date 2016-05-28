@@ -1,0 +1,13 @@
+@import "variables";
+
+body {
+    background: $bg-col1;
+}
+
+a {
+    color: $fg-col1;
+}
+
+a:hover, a:focus {
+    color: $fg-col2;
+}

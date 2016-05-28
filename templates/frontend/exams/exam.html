@@ -1,0 +1,76 @@
+{% extends 'frontend/base/base.html' %}
+
+
+{% load i18n %}
+{% load md2 %}
+{% load breadcrumbs %}
+
+
+{% block title %}{% trans 'Browse exam' %} &raquo; {{ exam.name }} {% endblock %}
+
+{% block breadcrumbs %}
+    {% url 'frontend:exam:info' exam.pk as url_exam_info %}
+    {% breadcrumb request url_exam_info exam.name %}
+{% endblock %}
+
+{% block content %}
+    {% include 'frontend/exams/exam_navbar.html' with exam=exam %}
+    <hr>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2><i class="fa fa-fw fa-list-ol"></i>{{ exam.name }}</h2>
+        </div>
+
+        <div class="panel-body">
+            <p>
+                <i class="fa fa-clock-o"></i> {{ exam.date_start }} - {{ exam.date_end }}
+
+                {% if not exam.in_progress %}
+                    <div class="alert alert-danger">
+                        <i class="fa fa-fw fa-warning"></i>
+                        {% trans 'This exam is currently closed. If you have commited any answers after its closing time, they will not be considered in your final scoring.' %}
+                    </div>
+                {% endif %}
+            </p>
+            <hr>
+            <p>{{ exam.description|markdown:"code-friendly, code-color" }}</p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group list-group-menu task-affix">
+                {% for task in tasks %}
+                    <a href="#task_{{ task.id }}" class="list-group-item">
+                        {{ task }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            {% for task in tasks %}
+                <div class="task panel panel-default" id="task_{{ task.id }}">
+                <div class="panel-heading">
+                    <h4>
+                        {{ task.title }}<br>
+                    </h4>
+                </div>
+
+                <div class="panel-body">
+                    <p>
+                        <i class="fa fa-fw fa-file-o"></i> {{ task.path }}<br>
+                        <i class="fa fa-fw fa-star-half-o"></i> {{ task.max_points }} {% trans 'points' %}
+                    </p>
+                    <hr>
+                    <p>{{ task.description|markdown:"code-friendly, code-color" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

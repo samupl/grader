@@ -1,0 +1,5 @@
+{% load i18n %}
+
+<span class="label pull-right {% if exam.time_left.seconds < 900 %}label-danger{% elif exam.time_left.seconds >= 900 and exam.time_left.seconds < 1800 %}label-warning{% else %}label-success{% endif %}">
+    <i class="fa fa-fw fa-clock-o"></i> {{ exam.time_left }}
+</span>

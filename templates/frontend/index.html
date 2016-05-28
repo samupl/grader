@@ -1,0 +1,119 @@
+{% extends 'frontend/base/base.html' %}
+
+
+{% load i18n %}
+{% load breadcrumbs %}
+
+{% block breadcrumbs %}
+
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-list-ol"></i> {% trans 'Exams currently in progress' %}</h4>
+                </div>
+
+                <div class="panel-body">
+                    {% if not current_exams %}
+                        <div class="alert alert-warning">
+                            {% trans 'There are currently no exams in progress.' %}
+                        </div>
+                    {% else %}
+                        <div class="list-group stats">
+                            {% for exam in current_exams %}
+                                <a href="{% url 'frontend:exam:info' exam.pk %}" class="list-group-item">
+                                    {{ exam.name }}
+                                    {% include 'frontend/exams/exam_li_badge.html' with exam=exam %}
+                                    <br>
+                                    <small>
+                                        {% include 'frontend/exams/exam_li_info.html' with exam=exam %}
+                                    </small>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-archive"></i> {% trans 'Archival exams' %}</h4>
+                </div>
+
+                <div class="panel-body">
+                    {% if not archival_exams %}
+                        <div class="alert alert-warning">
+                            {% trans 'There are currently no exams in the archive.' %}
+                        </div>
+                    {% else %}
+                        <div class="list-group stats">
+                            {% for exam in archival_exams %}
+                                <a href="{% url 'frontend:exam:info' exam.pk %}" class="list-group-item">
+                                    {{ exam.name }}<br>
+                                    <small>
+                                        {% include 'frontend/exams/exam_li_info.html' with exam=exam %}
+                                    </small>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-pie-chart"></i> {% trans 'Statistics' %}</h4>
+                </div>
+
+                <div class="panel-body">
+                    <div class="text-center" id="stats-loading-spinner">
+                        <i class="fa fa-3x fa-circle-o-notch fa-spin"></i>
+                    </div>
+                    <div class="stats hide">
+                        <ul class="list-group stats">
+                            <li class="list-group-item">
+                                {% trans 'Number of exams' %}
+                                <span class="badge" id="stats-exam-count"></span>
+                            </li>
+                            <li class="list-group-item">
+                                {% trans 'Software tests run' %}
+                                <span class="badge" id="stats-result-count"></span>
+                            </li>
+                            <li class="list-group-item">
+                                {% trans 'Tasks defined' %}
+                                <span class="badge" id="stats-task-count"></span>
+                            </li>
+                            <li class="list-group-item">
+                                {% trans 'Scenarios defined' %}
+                                <span class="badge" id="stats-scenario-count"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $.get(grader.urls.URL_STATISTICS)
+                .success(function(data){
+                    $("#stats-exam-count").text(data.exams);
+                    $("#stats-result-count").text(data.results);
+                    $("#stats-task-count").text(data.tasks);
+                    $("#stats-scenario-count").text(data.scenarios);
+                    $(".stats").removeClass('hide');
+                    $("#stats-loading-spinner").addClass('hide');
+                });
+    </script>
+{% endblock %}
