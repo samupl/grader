@@ -1,6 +1,5 @@
 from django.conf.urls import url
 
-import apps.api.views_exam_api as app_exam_api_views
 import apps.frontend.views_exam as app_exam_views
 
 urlpatterns = [
