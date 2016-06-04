@@ -12,7 +12,7 @@
         {% for result in task_result.results %}
             <p>
                 <i class="fa fa-fw fa-check text-success"></i>
-                <code>
+                <code class="success">
                     ./{{ task_result.task.path }} {{ result.scenario.arguments }}
                 </code>
             </p>
@@ -25,7 +25,7 @@
                 {% else %}
                     <i class="fa fa-fw fa-exclamation-triangle text-danger"></i>
                 {% endif %}
-                <code>
+                <code {% if result.passed %}class="success"{% endif %}>
                     ./{{ task_result.task.path }} {{ result.scenario.arguments }}
                 </code>
                 {% if not result.passed %}
@@ -43,5 +43,6 @@
             </div>
         {% endfor %}
     {% endif %}
+
     <hr>
 {% endfor %}

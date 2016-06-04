@@ -5,8 +5,10 @@ import os
 import time
 
 from apps.grader_core.models import Scenario
-from apps.grader_environments.provisioning import GraderProvisioningManager, TaskProvisioningManager
+from apps.grader_environments.provisioning import GraderProvisioningManager
+from apps.grader_environments.provisioning import TaskProvisioningManager
 from .scenario_validators import DiffScenarioValidator
+
 
 logger = logging.getLogger('grader')
 

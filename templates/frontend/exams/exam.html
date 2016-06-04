@@ -44,7 +44,7 @@
             </div>
             {% if request.user.is_authenticated %}
                 <div class="ctrl-buttons" data-resource="exam/{{ exam.id }}">
-                    <button class="btn btn-default btn-sm wysiwyg-save" data-resource="exam/{{ exam.id }}" data-url="{% url 'frontend:exam:api_change_desc' exam.pk %}">
+                    <button class="btn btn-default btn-sm wysiwyg-save" data-resource="exam/{{ exam.id }}" data-url="{% url 'api:exam:change_description' exam.pk %}">
                         <i class="fa fa-fw fa-check"></i>
                         <i class="fa fa-fw fa-circle-o-notch fa-spin loading"></i>
                         {% trans 'Save' %}
@@ -69,6 +69,11 @@
                         {{ task }}
                     </a>
                 {% endfor %}
+
+                <a href="#" class="back-to-top">
+                    <i class="fa fa-fw fa-arrow-up"></i>
+                    {% trans 'Back to top' %}
+                </a>
             </div>
         </div>
 

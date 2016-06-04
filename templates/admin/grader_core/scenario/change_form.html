@@ -1,0 +1,175 @@
+{% extends 'admin/change_form.html' %}
+
+
+{% load i18n %}
+
+
+{% block extrastyle %}
+    {{ block.super }}
+    <style type="text/css">
+        .modal-bg {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+    .modal {
+        background: #fff;
+        max-width: 700px;
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        margin-top: 50px;
+    }
+    .modal-header, .modal-body, .modal-footer {
+        padding: 10px 40px;
+    }
+
+    .modal-header {
+        background: #79aec8;
+        color: #fff;
+    }
+
+    .modal-footer {
+        background: #f8f8f8;
+        border-top: 1px solid #eee;
+        text-align: right;
+    }
+
+    .modal-footer > input {
+        margin-left: 10px;
+    }
+
+    .error {
+        color: #aa0000;
+    }
+    </style>
+{% endblock %}
+
+
+{% block submit_buttons_bottom %}
+    <div class="submit-row">
+        <input type="submit" value="{% trans 'Save' %}" class="default" name="_save">
+        <input type="button" id="from-script" value="{% trans 'Fetch data from example script' %}">
+        <input type="submit" value="{% trans 'Save and add another' %}" name="_addanother">
+        <input type="submit" value="{% trans 'Save and continue editing' %}" name="_continue">
+    </div>
+{% endblock %}
+
+{% block admin_change_form_document_ready %}
+    {{ block.super }}
+
+    <script type="text/javascript">
+        (function($) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = $.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            var populateFromScript = function populateFromScript() {
+                var $modalBg = $('<div></div>').addClass('modal-bg');
+                var $modal = $('<div></div>').addClass('modal');
+                var $modalHeader = $('<div></div>').addClass('modal-header');
+                var $modalBody = $('<div></div>').addClass('modal-body');
+                var $modalFooter = $('<div></div>').addClass('modal-footer');
+                var $error = $('<p></p>').addClass('error');
+
+                // Set modal header
+                $modalHeader.text("{% trans 'Populate from example script' %}");
+
+                // Construct modal footer buttons
+                var $closeButton = $('<input />').attr('type', 'button').val('{% trans 'Cancel' %}');
+                var $goButton = $('<input />')
+                        .attr('type', 'button')
+                        .val('{% trans 'Fetch' %}')
+                        .addClass('default')
+                        .addClass('button');
+                $closeButton.appendTo($modalFooter);
+                $goButton.appendTo($modalFooter);
+
+                // Construct the form
+                var $input = $('<input />')
+                        .attr('type', 'text')
+                        .attr('placeholder', '{% trans 'Executable name and parameters' %}')
+                        .addClass('vTextField');
+                $input.appendTo($modalBody);
+
+                // Handle the actual fetch
+                var fetchData = function fetchData() {
+                    $error.text('');
+                    $input.attr('disabled', 'disabled');
+                    $closeButton.attr('disabled', 'disabled');
+                    $goButton.attr('disabled', 'disabled');
+                    var $p = $('<p></p>')
+                        .text('{% trans 'Loading data from local executable...' %}')
+                        .appendTo($modalBody);
+
+                    $.ajax({
+                        url: '{% url 'api:scenario:get_from_executable' %}',
+                        method: 'POST',
+                        data: {
+                            'csrfmiddlewaretoken': getCookie('csrftoken'),
+                            'executable': $input.val()
+                        }
+                    })
+                    .success(function (data) {
+                        // console.log(data);
+                        $("#id_arguments").val(data.arguments);
+                        $("#id_pattern_stderr").val(data.std_err);
+                        $("#id_pattern_stdout").val(data.std_out);
+                        $("#id_points").val(data.points);
+                        $("#id_scenario_type").val('diff');
+                        close();
+                    })
+                    .error(function (data) {
+                        var errorMsg = data.responseText;
+                        if (data.responseJSON !== undefined) {
+                            errorMsg = data.responseJSON.message;
+                        }
+                        $p.remove();
+                        $input.removeAttr('disabled');
+                        $closeButton.removeAttr('disabled');
+                        $goButton.removeAttr('disabled');
+                        $error.text(errorMsg);
+                    })
+                };
+                $goButton.click(fetchData);
+                // Add a callback for closing
+                var close = function close(event) {
+                    if(event !== undefined && event.target != this) return;
+                    $modalBg.remove();
+                };
+                $modalBg.click(close);
+                $closeButton.click(close);
+
+                // Construct the final modal
+                $modal.appendTo($modalBg);
+                $modalHeader.appendTo($modal);
+                $modalBody.appendTo($modal);
+                $error.appendTo($modalBody);
+                $modalFooter.appendTo($modal);
+
+                // Display it
+                $modalBg.appendTo($('body'));
+            };
+
+            $(document).ready(function () {
+                $("#from-script").click(populateFromScript);
+            });
+        })(django.jQuery);
+    </script>
+{% endblock %}

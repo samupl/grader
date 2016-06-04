@@ -4,32 +4,34 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-19 15:35+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2016-05-28 16:18+0000\n"
+"PO-Revision-Date: 2016-05-28 18:19+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
-#: apps/grader_checker/models.py:8
+#: apps/grader_checker/models.py:8 apps/grader_checker/models.py:19
 msgid "Check date"
 msgstr "Data sprawdzenia"
 
-#: apps/grader_checker/models.py:9
+#: apps/grader_checker/models.py:9 apps/grader_checker/models.py:20
 msgid "Scored points"
 msgstr "Zdobyte punkty"
 
-#: apps/grader_checker/models.py:10
+#: apps/grader_checker/models.py:10 apps/grader_checker/models.py:21
+#: templates/frontend/exams/scores/table_results/index.html:59
 msgid "User"
 msgstr "Użytkownik"
 
-#: apps/grader_core/admin.py:10
+#: apps/grader_core/admin.py:11
 msgid "Grader administration"
 msgstr "Administracja Grader"
 
@@ -117,11 +119,11 @@ msgstr "Oczekiwane standardowe wyjście błędów"
 msgid "Points for this scenario"
 msgstr "Punkty za ten scenariusz"
 
-#: apps/grader_core/models.py:125
+#: apps/grader_core/models.py:126
 msgid "Scenario"
 msgstr "Scenariusz"
 
-#: apps/grader_core/models.py:126
+#: apps/grader_core/models.py:127
 msgid "Scenarios"
 msgstr "Scenariusze"
 
@@ -145,13 +147,13 @@ msgstr "środowiska uruchomieniowe"
 msgid "Host"
 msgstr "Host"
 
-#: apps/grader_environments/models.py:33 templates/frontend/base/base.html:85
-#: templates/frontend/base/base.html:86
+#: apps/grader_environments/models.py:33 templates/frontend/base/base.html:89
+#: templates/frontend/base/base.html:90
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
-#: apps/grader_environments/models.py:34 templates/frontend/base/base.html:89
-#: templates/frontend/base/base.html:90
+#: apps/grader_environments/models.py:34 templates/frontend/base/base.html:93
+#: templates/frontend/base/base.html:94
 msgid "Password"
 msgstr "Hasło"
 
@@ -174,7 +176,7 @@ msgid "Sign in"
 msgstr "Zaloguj się"
 
 #: templates/frontend/auth/sign_out.html:7
-#: templates/frontend/base/base.html:100
+#: templates/frontend/base/base.html:104
 msgid "Sign out"
 msgstr "Wyloguj się"
 
@@ -186,49 +188,68 @@ msgstr "Zostałeś wylogowany prawidłowo."
 msgid "Back to home page"
 msgstr "Powrót do strony głównej"
 
-#: templates/frontend/base/base.html:31
+#: templates/frontend/base/base.html:35
 msgid "Grader"
 msgstr "Grader"
 
-#: templates/frontend/base/base.html:51
+#: templates/frontend/base/base.html:55
 msgid "Change language"
 msgstr "Zmień język"
 
-#: templates/frontend/base/base.html:74
+#: templates/frontend/base/base.html:78
 msgid "Not logged-in"
 msgstr "Niezalogowany"
 
-#: templates/frontend/base/base.html:76
+#: templates/frontend/base/base.html:80
 msgid "Logged in as"
 msgstr "Zalogowany jako"
 
-#: templates/frontend/base/base.html:114
+#: templates/frontend/base/base.html:113
+msgid "Home page"
+msgstr "Strona główna"
+
+#: templates/frontend/base/base.html:126
 msgid "Created by"
 msgstr "Utworzony przez"
 
-#: templates/frontend/base/base.html:114
+#: templates/frontend/base/base.html:126
 msgid "maintained by"
 msgstr "zarządzany przez"
 
-#: templates/frontend/base/base.html:116
+#: templates/frontend/base/base.html:128
 msgid "Code licensed under"
 msgstr "Licencja"
 
-#: templates/frontend/base/base.html:116
+#: templates/frontend/base/base.html:128
 msgid "MIT License"
 msgstr "MIT"
 
-#: templates/frontend/exams/exam.html:8
+#: templates/frontend/exams/exam.html:9
 msgid "Browse exam"
 msgstr "Przeglądaj egzamin"
 
-#: templates/frontend/exams/exam.html:27
+#: templates/frontend/exams/exam.html:32
 msgid ""
 "This exam is currently closed. If you have commited any answers after its "
 "closing time, they will not be considered in your final scoring."
-msgstr "Ten egzamin jest obecnie zamknięty. Jeśli wysłałeś swoje rozwiązania po czasie zakończenia egzaminu, nie będą one wzięte pod uwagę."
+msgstr ""
+"Ten egzamin jest obecnie zamknięty. Jeśli wysłałeś swoje rozwiązania po "
+"czasie zakończenia egzaminu, nie będą one wzięte pod uwagę."
 
 #: templates/frontend/exams/exam.html:50
+msgid "Save"
+msgstr "Zapisz"
+
+#: templates/frontend/exams/exam.html:54
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: templates/frontend/exams/exam.html:75
+#: templates/frontend/exams/scores/menu.html:21
+msgid "Back to top"
+msgstr "Powrót do góry"
+
+#: templates/frontend/exams/exam.html:92
 msgid "points"
 msgstr "pkt"
 
@@ -237,42 +258,118 @@ msgid "Exam info"
 msgstr "Informacje o egzaminie"
 
 #: templates/frontend/exams/exam_navbar.html:16
-#| msgid "Scored points"
+#: templates/frontend/exams/scores/all_users/index.html:8
+#: templates/frontend/exams/scores/all_users/index.html:12
+#: templates/frontend/exams/scores/index.html:8
+#: templates/frontend/exams/scores/index.html:12
+#: templates/frontend/exams/scores/index.html:32
+#: templates/frontend/exams/scores/single_user/index.html:8
+#: templates/frontend/exams/scores/single_user/index.html:12
+#: templates/frontend/exams/scores/single_user/single.html:8
+#: templates/frontend/exams/scores/single_user/single.html:12
+#: templates/frontend/exams/scores/table_results/index.html:8
+#: templates/frontend/exams/scores/table_results/index.html:12
 msgid "Scores"
 msgstr "Wyniki"
 
-#: templates/frontend/index.html:16
+#: templates/frontend/exams/results/result.html:8
+msgid "No solutions submitted for this task!"
+msgstr "Dla tego zadania nie zostały wysłane żadne rozwiązania!"
+
+#: templates/frontend/exams/results/result.html:35
+msgid "Toggle result"
+msgstr "Pokaż/ukryj wynik"
+
+#: templates/frontend/exams/scores/all_users/index.html:13
+msgid "All users results"
+msgstr "Wyniki wszystkich użytkowników"
+
+#: templates/frontend/exams/scores/all_users/index.html:37
+msgid "Scores (all users, list)"
+msgstr "Wyniki (wszyscy użytkownicy, lista)"
+
+#: templates/frontend/exams/scores/all_users/index.html:40
+#: templates/frontend/exams/scores/single_user/index.html:44
+#: templates/frontend/exams/scores/table_results/index.html:40
+msgid "Participants"
+msgstr "Uczestnicy"
+
+#: templates/frontend/exams/scores/index.html:36
+msgid "To proceed select a display method from the left"
+msgstr "Aby kontynuować wybierz sposób prezentacji wyników z menu po lewej"
+
+#: templates/frontend/exams/scores/index.html:41
+msgid "Last check was done at"
+msgstr "Ostatnia weryfikacja rozwiązań odbyła się"
+
+#: templates/frontend/exams/scores/index.html:45
+msgid "No check have been run yet"
+msgstr "Rozwiązanie nie były jeszcze sprawdzane"
+
+#: templates/frontend/exams/scores/menu.html:6
+msgid "Single user results"
+msgstr "Wyniki pojedynczego użytkownika"
+
+#: templates/frontend/exams/scores/menu.html:11
+msgid "All users results (list)"
+msgstr "Wyniki wszystkich użytkowników (lista)"
+
+#: templates/frontend/exams/scores/menu.html:16
+#: templates/frontend/exams/scores/table_results/index.html:13
+msgid "All users results (table)"
+msgstr "Wyniki wszystkich użytkowników (tabela)"
+
+#: templates/frontend/exams/scores/single_user/index.html:13
+#: templates/frontend/exams/scores/single_user/index.html:37
+#: templates/frontend/exams/scores/single_user/single.html:13
+#: templates/frontend/exams/scores/single_user/single.html:39
+msgid "Scores (single user)"
+msgstr "Wyniki (pojedynczy użytkownik)"
+
+#: templates/frontend/exams/scores/single_user/index.html:41
+msgid "Select an user to see his results"
+msgstr "Wybierz użytkownika aby zobaczyć jego wyniki"
+
+#: templates/frontend/exams/scores/table_results/index.html:37
+msgid "Scores (all users, table)"
+msgstr "Wyniki (wszyscy użytkownicy, tabela)"
+
+#: templates/frontend/index.html:11
+msgid "Home"
+msgstr "Strona główna"
+
+#: templates/frontend/index.html:20
 msgid "Exams currently in progress"
 msgstr "Egzaminy w trakcie"
 
-#: templates/frontend/index.html:22
+#: templates/frontend/index.html:26
 msgid "There are currently no exams in progress."
 msgstr "W tej chwili nie ma żadnych egzaminów"
 
-#: templates/frontend/index.html:45
+#: templates/frontend/index.html:49
 msgid "Archival exams"
 msgstr "Archiwalne egzaminy"
 
-#: templates/frontend/index.html:51
+#: templates/frontend/index.html:55
 msgid "There are currently no exams in the archive."
 msgstr "Archiwum egzaminów jest obecnie puste."
 
-#: templates/frontend/index.html:72
+#: templates/frontend/index.html:76
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: templates/frontend/index.html:82
+#: templates/frontend/index.html:86
 msgid "Number of exams"
 msgstr "Ilość egzaminów"
 
-#: templates/frontend/index.html:86
+#: templates/frontend/index.html:90
 msgid "Software tests run"
 msgstr "Przeprowadzonych testów"
 
-#: templates/frontend/index.html:90
+#: templates/frontend/index.html:94
 msgid "Tasks defined"
 msgstr "Zdefiniowanych zadań"
 
-#: templates/frontend/index.html:94
+#: templates/frontend/index.html:98
 msgid "Scenarios defined"
 msgstr "Liczba scenariuszy sprawdzających"

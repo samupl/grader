@@ -1,3 +1,4 @@
+from django.db.models import Max
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
@@ -29,7 +30,14 @@ def exam_scores_index(request, exam_id):
     :param django.http.request.HttpRequest request: Django Request object
     """
     exam = get_object_or_404(Exam, pk=exam_id)
-    return render(request, 'frontend/exams/scores/index.html', {'exam': exam})
+    max_date = LatestResult.objects.filter(
+        scenario__task__exam=exam
+    ).aggregate(max_date=Max('check_date'))['max_date']
+
+    return render(request, 'frontend/exams/scores/index.html', {
+        'exam': exam,
+        'max_date': max_date
+    })
 
 
 def exam_scores_single_index(request, exam_id):

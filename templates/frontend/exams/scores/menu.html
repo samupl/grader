@@ -7,12 +7,17 @@
     </a>
 
     {% url 'frontend:exam:scores_list' exam.id as url_all_users %}
-    <a href="{{ url_all_users }}" class="list-group-item">
+    <a href="{{ url_all_users }}" class="list-group-item {% if url_all_users in request.path %} active {% endif %}">
         <i class="fa fa-fw fa-users"></i> {% trans 'All users results (list)' %}
     </a>
 
     {% url 'frontend:exam:scores_table' exam.id as url_table %}
-    <a href="{{ url_table }}" class="list-group-item">
+    <a href="{{ url_table }}" class="list-group-item {% if url_table in request.path %} active {% endif %}">
         <i class="fa fa-fw fa-table"></i> {% trans 'All users results (table)' %}
+    </a>
+
+    <a href="#" class="back-to-top">
+        <i class="fa fa-fw fa-arrow-up"></i>
+        {% trans 'Back to top' %}
     </a>
 </div>

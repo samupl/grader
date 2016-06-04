@@ -40,7 +40,7 @@
                     <h3><i class="fa fa-fw fa-user"></i> {{ username }}</h3>
                 </div>
                 <div class="panel-body">
-                    {% include 'frontend/exams/results/result.html' with task_results=task_results %}
+                    {% include 'frontend/exams/results/result.html' with task_results=task_results user=username %}
                 </div>
             </div>
         </div>

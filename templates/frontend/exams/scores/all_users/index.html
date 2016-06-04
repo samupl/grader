@@ -37,6 +37,7 @@
                     <h2><i class="fa fa-fw fa-star-half-o"></i> {{ exam.name }} <small class="pull-right">{% trans 'Scores (all users, list)' %}</small></h2>
                 </div>
                 <div class="panel-body">
+                    <h3>{% trans 'Participants' %}</h3>
                     <ul>
                         {% for result in results %}
                             <li><a href="#scores_{{ result.user }}">{{ result.user }}</a></li>
@@ -51,7 +52,7 @@
                         <h3><i class="fa fa-fw fa-user"></i> {{ result.user }}</h3>
                     </div>
                     <div class="panel-body">
-                        {% include 'frontend/exams/results/result.html' with task_results=result.task_results %}
+                        {% include 'frontend/exams/results/result.html' with task_results=result.task_results user=result.user %}
                     </div>
                 </div>
             {% endfor %}

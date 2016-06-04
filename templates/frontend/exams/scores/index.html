@@ -35,6 +35,16 @@
                     <div class="alert alert-info">
                         <i class="fa fa-info-circle"></i> {% trans 'To proceed select a display method from the left' %}
                     </div>
+
+                    {% if max_date %}
+                        <div class="alert alert-info">
+                            <i class="fa fa-info-circle"></i> {% trans 'Last check was done at' %}: {{ max_date }}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            <i class="fa fa-warning"></i> {% trans 'No check have been run yet' %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

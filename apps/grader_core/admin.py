@@ -3,6 +3,7 @@ from django.db.models import F, Sum
 from django.utils.translation import ugettext_lazy as _
 from django_summernote.admin import SummernoteModelAdmin
 
+from apps.grader_core.forms import ScenarioModelForm
 from apps.grader_core.models import Exam, Task, Scenario, Repository
 
 
@@ -39,6 +40,7 @@ class TaskAdmin(admin.ModelAdmin):
 
 class ScenarioAdmin(admin.ModelAdmin):
     list_display = ['task', 'scenario_type', 'points']
+    form = ScenarioModelForm
 
 
 class RepositoryAdmin(admin.ModelAdmin):

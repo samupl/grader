@@ -34,11 +34,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd party applications
-    'debug_toolbar',
+    # 'debug_toolbar',
+    # 'template_timings_panel',
     'bootstrap3',
     'django_markdown2',
     'django_summernote',
     # Local project applications
+    'apps.api',
     'apps.breadcrumbs',
     'apps.grader_core',
     'apps.grader_checker',
@@ -46,7 +48,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -125,8 +127,23 @@ def show_toolbar(_):
 
 
 INTERNAL_IPS = ['127.0.0.1', '79.186.212.146']
-SHOW_TOOLBAR_CALLBACK = show_toolbar
+# SHOW_TOOLBAR_CALLBACK = show_toolbar
 
+# DEBUG_TOOLBAR_PANELS = [
+#     'debug_toolbar.panels.versions.VersionsPanel',
+#     'debug_toolbar.panels.timer.TimerPanel',
+#     'debug_toolbar.panels.settings.SettingsPanel',
+#     'debug_toolbar.panels.headers.HeadersPanel',
+#     'debug_toolbar.panels.request.RequestPanel',
+#     'debug_toolbar.panels.sql.SQLPanel',
+#     'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+#     'debug_toolbar.panels.templates.TemplatesPanel',
+#     'template_timings_panel.panels.TemplateTimings.TemplateTimings',
+#     'debug_toolbar.panels.cache.CachePanel',
+#     'debug_toolbar.panels.signals.SignalsPanel',
+#     'debug_toolbar.panels.logging.LoggingPanel',
+#     'debug_toolbar.panels.redirects.RedirectsPanel',
+# ]
 
 LOGGING = {
     'version': 1,
@@ -164,3 +181,11 @@ LOGGING = {
 
 
 LOGIN_REDIRECT_URL = 'frontend:home'
+LOGIN_URL = 'admin:login'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}

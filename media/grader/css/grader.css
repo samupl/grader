@@ -103,6 +103,15 @@ body {
   @media (min-width: 1200px) {
     .affix {
       width: 360px; } }
+  .affix a.back-to-top {
+    display: block;
+    text-align: center;
+    font-size: smaller;
+    color: #737373;
+    margin-top: 10px; }
+
+.back-to-top {
+  display: none; }
 
 .diff-block table {
   font-family: Monaco, Monospaced, "DejaVu Sans Mono", "Courier New", monospace;
@@ -149,6 +158,10 @@ table.scores th.task > div {
   -o-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); }
+
+code.success {
+  background: #F3F9F2;
+  color: #2cae20; }
 
 .wysiwyg.focus {
   border: 2px solid #11BAB4;

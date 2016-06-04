@@ -19,6 +19,7 @@ from django.contrib import admin
 from apps.grader_core.admin import configure_admin_site
 import apps.frontend.urls
 import apps.frontend.urls_auth
+import apps.api.urls as api_urls
 
 configure_admin_site(admin)
 
@@ -28,5 +29,6 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     url(r'^auth/', include(apps.frontend.urls_auth, namespace='auth')),
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^api/', include(api_urls, namespace='api')),
     url(r'^', include(apps.frontend.urls, namespace='frontend')),
 ]

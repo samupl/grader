@@ -10,11 +10,11 @@
 
 {% block breadcrumbs %}
     {% trans 'Scores' as i18n_scores %}
-    {% trans 'All users results' as i18n_scores_all %}
+    {% trans 'All users results (table)' as i18n_scores_all %}
 
     {% url 'frontend:exam:info' exam.pk as url_exam_info %}
     {% url 'frontend:exam:scores' exam.pk as url_exam_scores %}
-    {% url 'frontend:exam:scores_list' exam.pk as url_exam_scores_all_index %}
+    {% url 'frontend:exam:scores_table' exam.pk as url_exam_scores_all_index %}
 
     {% breadcrumb request url_exam_info exam.name %}
     {% breadcrumb request url_exam_scores i18n_scores %}
@@ -37,6 +37,7 @@
                     <h2><i class="fa fa-fw fa-star-half-o"></i> {{ exam.name }} <small class="pull-right">{% trans 'Scores (all users, table)' %}</small></h2>
                 </div>
                 <div class="panel-body">
+                    <h3>{% trans 'Participants' %}</h3>
                     <ul>
                         {% for result in results %}
                             <li><a href="#scores_{{ result.user }}">{{ result.user }}</a></li>
